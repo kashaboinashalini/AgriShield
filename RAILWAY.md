@@ -55,7 +55,8 @@ MONGODB_URI="<railway/atlas connection string>" npm run seed
 
 **Service "ai-service"** (set *Root Directory* to `ai-service`):
 - Build command: `pip install -r requirements.txt`
-- Start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+- Start command: `python main.py`
+  (`main.py` reads the `PORT` env var Railway injects, defaulting to 8000 locally — safe for Railway which parses plain integers, not shell `${}` syntax)
 
 > Railway injects `PORT` — both start commands above honor it (`backend/server.js` reads `process.env.PORT`).
 
