@@ -95,7 +95,7 @@ exports.dashboard = async (req, res) => {
         totalScans: scans,
         weather,
         weatherUnavailable,
-        weatherSource: weather ? 'LIVE DATA — OpenWeather' : 'Weather API unavailable',
+        weatherSource: weather ? `LIVE DATA — ${weather.source}` : 'Weather API unavailable',
         weatherUpdated: weather ? weather.lastUpdated : null,
         lastWeatherRecord: weatherRecords[0] ? { condition: weatherRecords[0].condition, temperature: weatherRecords[0].temperature, date: weatherRecords[0].createdAt } : null,
         recentActivities: recentActivities.map(a => ({ ...a.toObject ? a.toObject() : a, ago: ago(a.date) })),

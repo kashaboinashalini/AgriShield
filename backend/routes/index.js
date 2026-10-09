@@ -77,9 +77,9 @@ router.get('/irrigation/history', protect, irrigation.history);
 
 // --- Risk & disasters ---
 router.post('/risk/analyze', protect, risk.analyze);
+router.get('/risk/history', protect, risk.history);
 router.get('/risk/:farmId', protect, risk.farmRisks);
 router.get('/risks', protect, risk.risks);
-router.get('/risk/history', protect, risk.history);
 router.get('/disasters', protect, risk.disasters);
 
 // --- Markets ---

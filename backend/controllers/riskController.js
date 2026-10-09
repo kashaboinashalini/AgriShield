@@ -1,4 +1,5 @@
 const Farm = require('../models/Farm');
+const mongoose = require('mongoose');
 const CropScan = require('../models/CropScan');
 const PestScan = require('../models/PestScan');
 const SoilAnalysis = require('../models/SoilAnalysis');
@@ -62,6 +63,8 @@ exports.analyze = async (req, res) => {
 // GET /api/risk/:farmId — latest stored assessment, recomputed if missing
 exports.farmRisks = async (req, res) => {
   try {
+    // Guard against non-ObjectId params like "history"
+    if (!mongoose.isValidObjectId(req.params.farmId)) return res.status(400).json({ success: false, message: 'Invalid farm id.' });
     const stored = await RiskAssessment.findOne({ user: req.user.id, farm: req.params.farmId }).sort('-createdAt');
     if (stored && Date.now() - stored.createdAt.getTime() < 6 * 3600000) {
       return res.json({ success: true, data: { ...stored.toObject(), cached: true } });

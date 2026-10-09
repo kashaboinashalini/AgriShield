@@ -62,7 +62,7 @@ npm run dev           # http://localhost:5173
 - **Real-time Dashboard** — farm area, crop health, disease risk, soil health, water status, weather risk, estimated profit. Every card shows value, status, source and last-updated. Recent activities, notifications and upcoming tasks from MongoDB.
 - **Farm Management** — multi-farm CRUD, acres/hectares, owner/village/district/state, coordinates, soil & irrigation type, active farm selection.
 - **Location** — browser geolocation, manual entry, or click-to-pick on the map. Coordinates drive weather, risk and maps.
-- **Live Weather** — OpenWeatherMap integration (temperature, humidity, rain, wind, pressure, clouds, sunrise/sunset, 5–7 day forecast). Weather-based agricultural recommendations generated from actual conditions. **If the API key is missing or the provider fails, the app says "Live weather data is temporarily unavailable" — it never shows fake weather.**
+- **Live Weather** — OpenWeatherMap when `WEATHER_API_KEY` is set, otherwise **Open-Meteo** (free, keyless). Temperature, humidity, rain, wind, pressure, clouds, sunrise/sunset, 5–7 day forecast, and weather-based farm recommendations from real conditions. If both providers fail the app says "Live weather data is temporarily unavailable" — it never shows fake weather.
 - **Disease Detection** — upload/capture leaf image → Express + Multer → Python FastAPI (Pillow + OpenCV pixel statistics) → prediction → MongoDB. Transparent local pipeline, labelled "AI Demo Analysis" (not a medical-grade diagnosis).
 - **Pest Detection** — separate module with confidence, damage level, action and prevention; full scan history.
 - **Soil Health Analyzer** — pH, N, P, K, moisture, temperature → dynamically calculated score, statuses and recommendations.
